@@ -1,0 +1,39 @@
+<div class="textContainer padding10 pSuojin">
+
+    <h3>什么是 AngularJS?</h3>
+    <p>AngularJS 是一个为动态WEB应用设计的结构框架。它能让你使用HTML作为模板语言，
+        通过扩展HTML的语法，让你能更清楚、简洁地构建你的应用组件。它的创新点在于，
+        利用 <span><strong>数据绑定</strong></span> 和 <span><strong>依赖注入</strong></span>，
+        它使你不用再写大量的代码了。这些全都是通过浏览器端的Javascript实现，这也
+        使得它能够完美地和任何服务器端技术结合。</p>
+    <p>HTML是一门很好的为静态文本展示设计的声明式语言，但要构建WEB应用的话它就显得乏力了.</p>
+    <p>通常，我们是通过以下技术来解决静态网页技术在构建动态应用上的不足：</p>
+    <blockquote>
+        <ul>
+            <li><span><strong>js类库</strong></span> - 类库是一些函数的集合，它能帮助你写WEB应用。缺点：大量的DOM操作，
+                代码不易整理，不能单测...</li>
+            <li><span><strong>框架</strong></span> - 框架是一种特殊的、已经实现了的WEB应用，你只需要对它填充具体的业
+                务逻辑。这里框架是起主导作用的，由它来根据具体的应用逻辑来调用你的代码。
+                框架有：knockout、sproutcore等。</li>
+        </ul>
+    </blockquote>
+    <p>AngularJS使用了不同的方法，它尝试去补足HTML本身在构建应用方面的缺陷.最明显的特性如下：
+        <ul>
+            <li>双向绑定</li>
+            <li>依赖注入</li>
+            <li>指令</li>
+            <li>路由</li>
+            <li>单元测试</li>
+        </ul>
+    </p>
+    <p><span style="color: red">总结：Angularjs是在JS基础上实现的一套MVC框架，只要你熟悉了它的数据绑定，理解作用域scope
+        与controller的对应关系，知道如何编写服务，懂得路由的基本使用...你基本就可以开发一些网页了！</span></p>
+</div>
+
+<div class="textContainer marginTop10 padding10" ng-controller="angularIntroCtrl">
+    <h4>一个数据绑定的例子</h4>
+    <label>Input a Name:</label>
+    <input type="text" ng-model="yourName" placeholder="Enter a name here">
+    <hr>
+    <h1>Hello {{yourName}}!</h1>
+</div>

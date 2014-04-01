@@ -1,0 +1,60 @@
+<div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.何为Filter</h3>
+        <p>AngularJS过滤器用来格式化输出给用户的数据。
+            除了格式化数据，过滤器还能修改DOM。这使
+            得过滤器通常用来做些如“适时地给输出加入CSS样式”等工作。</p>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">2.AngularJs中的filter及使用方式</h3>
+        <p>
+        <ol>
+            <li>currency</li>
+            <li>date</li>
+            <li>filter</li>
+            <li>json</li>
+            <li>limitTo</li>
+            <li>lowercase</li>
+            <li>number</li>
+            <li>orderBy</li>
+            <li>uppercase</li>
+        </ol>
+        </p>
+        <pre>
+            <p>{{text1}}</p>
+            <p>{{text2}}</p>
+            <p>{{text3}}</p>
+        </pre>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">3.具体实例</h3>
+        <h5>示例（查询与排序）</h5>
+        <p>排序方式：排序列 = {{predicate}}; reverse = {{reverse}}</p>
+        <label>查询：<input type="text" ng-model="search"></label>
+        <hr/>
+        <button class="btn btn-info" ng-click="predicate='';reverse=false">不排序</button>
+        <table class="friend">
+            <tr>
+                <th><a href="" ng-click="predicate = 'name'; reverse=false">Name</a>
+                    (<a href="" ng-click="predicate = '-name'; reverse=false">^</a>)</th>
+                <th><a href="" ng-click="predicate = 'phone'; reverse=!reverse">Phone Number</a></th>
+                <th><a href="" ng-click="predicate = 'age'; reverse=!reverse">Age</a></th>
+            </tr>
+            <tr ng-repeat="friend in friends | filter:search| orderBy:predicate:reverse">
+                <td>{{friend.name}}</td>
+                <td>{{friend.phone}}</td>
+                <td>{{friend.age}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span>
+            <a href="http://docs.angularjs.org/guide/filter"
+               target="_blank"><span style="color: red;font-size: 17px">
+                求 被点</span></a></p>
+    </div>
+</div>
+

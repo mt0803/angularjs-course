@@ -1,0 +1,91 @@
+<div class="row textContainer padding10 pSuojin">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.启动</h3>
+        <div class="col-xs-12">
+            <div class="col-sm-6"><img width="90%"  src="images/hello.jpg"></div>
+            <div class="col-sm-6"><img src="images/concepts-startup.png"></div>
+        </div>
+        <h4>启动流程如下：</h4>
+        <ol>
+            <li>浏览器载入HTML，然后把它解析成DOM。</li>
+            <li>浏览器载入angular.js脚本。</li>
+            <li>AngularJS等到DOMContentLoaded事件触发。</li>
+            <li>AngularJS寻找ng-app指令，这个指令指示了应用的边界。</li>
+            <li>使用ng-app中指定的模块来配置注入器($injector)。</li>
+            <li>注入器($injector)是用来创建“编译服务($compile service)”和“根作用域($rootScope)”的。</li>
+            <li>编译服务($compile service)是用来编译DOM并把它链接到根作用域($rootScope)的。</li>
+            <li>ng-init指令将“World”赋给作用域里的name这个变量。</li>
+            <li>通过{{name}}的替换，整个表达式变成了“Hello World”。</li>
+        </ol>
+
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">2.执行期</h3>
+        <div class="col-xs-12">
+            <div class="col-sm-6"><img width="90%"  src="images/hello.jpg"></div>
+            <div class="col-sm-6"><img src="images/concepts-runtime.png"></div>
+        </div>
+        <h4>AngularJS如何和浏览器的事件回路(event loop)交互：</h4>
+        <ol>
+            <li>浏览器的事件循环等待事件的触发。所谓事件包括用户的交互操作、定时事件、或者网络事件(服务器的响应)</li>
+            <li>事件触发后，回调会被执行。此时会进入Javascript上下文。通常回调可以用来修改DOM结构。</li>
+            <li>一旦回调执行完毕，浏览器就会离开Javascript上下文，并且根据DOM的修改重新渲染视图。</li>
+        </ol>
+        <br><br>
+        <p>
+            AngularJS通过使用自己的事件处理循环，改变了传统的Javascript工作流。
+            这使得Javascript的执行被分成原始部分和拥有AngularJS执行上下文的部分。
+            只有在AngularJS执行上下文中运行的操作，才能享受到AngularJS提供的数据绑定，
+            异常处理，资源管理等功能和服务。你可以使用 $apply()来从普通Javascript上下
+            文进入AngularJS执行上下文。记住，大部分情况下（如在控制器，服务中），
+            $apply都已经被用来处理当前事件的相应指令执行过了。只有当你使用自定义的
+            事件回调或者是使用第三方类库的回调时，才需要自己执行$apply。
+        </p>
+        <ol>
+            <li>通过调用 scope.$apply(stimulusFn)来进入AngularJS的执行上下文，
+                这里的stimulusFn是你希望在AngularJS执行上下文中执行的函数</li>
+            <li>AngularJS会执行stimulusFn()，这个函数一般会改变应用的状态。</li>
+            <li>AngularJS进入$digest循环。这个循环是由两个小循环组成的，这两
+                个小循环用来处理处理$evalAsync队列和$watch列表。这个$digest
+                循环直到模型“稳定”前会一直迭代。这个稳定具体指的是$evalAsync
+                对表为空，并且$watch列表中检测不到任何改变了。</li>
+            <li>这个$evalAsync队列是用来管理那些“视图渲染前需要在当前栈框架外
+                执行的操作的”。这通常使用 setTimeout(0)来完成的。用setTimeout(0)
+                会有速度慢的问题。并且，因为浏览器是根据事件队列按顺序渲染视图的，
+                还会造成视图的抖动。</li>
+            <li>$watch列表是一个表达式的集合，这些表达式可能是自上次迭代后发生了
+                改变的。如果有检测到了有改变，那么$watch函数就会被调用，它通常会
+                把新的值更新到DOM中。</li>
+            <li>一旦AngularJS的$digest循环结束，整个执行就会离开AngularJS和Javascript
+                的上下文。这些都是在浏览器为数据改变而进行重渲染之后进行的。</li>
+        </ol>
+        <br><br>
+        <h4>下面解释了"hello world"的例子是怎么样实现“将用户输入绑定到视图上”的效果。：</h4>
+        <ol>
+            <li>在编译阶段：</li>
+                <ol>
+                    <li>input上的ng-model指令给 input 输入框绑定了keydown事件；</li>
+                    <li>{{name}}这个变量替换表单式建立了一个 $watch 来接受 name 变量改变的通知。</li>
+                </ol>
+            <li>在执行期阶段：</li>
+                <ol>
+                    <li>按下任何一个键(以X键为例)，都会触发一个 input 输入框的keydown事件；</li>
+                    <li>input 上的指令捕捉到 input 里值得改变，然后调用 $apply("name = 'X';")来更新处于AngularJS执行上下文中的模型；</li>
+                    <li>AngularJS将 name='X'应用到模型上；</li>
+                    <li>$digest 循环开始；</li>
+                    <li>$watch 列表检测到了name值的变化，然后通知 {{name}}变量替换的表达式，这个表达式负责将DOM进行更新</li>
+                    <li>AngularJS退出执行上下文，然后退出Javascript上下文中的keydown事件；</li>
+                    <li>浏览器以更新的文本重渲染视图。</li>
+                </ol>
+        </ol>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span>
+            <a href="https://gitcafe.com/Angularjs/Angularjs-Developer-Guide/blob/master/AngularJS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%9704%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E8%A7%88.md"
+               target="_blank"><span style="color: red;font-size: 17px">
+                求 被点</span></a></p>
+    </div>
+</div>
+

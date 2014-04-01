@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>My AngularJS Course</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/app.css"/>
+    <script src="lib/jquery-2.0.3.min.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+
+<div class="container">
+    <div class="navbg">
+        <div class="container">
+            <ul id="navul" class="cl" style="margin-left: 20%">
+                <li class="">
+                    <a href="#">AngularJs简介</a>
+                </li>
+                <li class="">
+                    <a href="#">基础知识</a>
+                    <ul>
+                        <li><a href="#/studyDataBind">数据双向绑定</a></li>
+                        <li><a href="#/studyEventBind">绑定事件</a></li>
+                        <li><a href="#/studyRoute">路由&多视图</a></li>
+                        <li><a href="#/studyFilter">过滤器</a></li>
+                        <li><a href="#/studyExecute">Angularjs执行过程</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#">中级进阶</a>
+                    <ul>
+                        <li><a href="#">表单验证</a></li>
+                        <li><a href="#">依赖注入</a></li>
+                        <li><a href="#">XHR请求</a></li>
+                        <li><a href="#">作用域间的通信</a></li>
+                        <li><a href="#">指令-初级</a></li>
+                        <li><a href="#">编写服务</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#">高级进阶</a>
+                    <ul>
+                        <li><a href="#">服务-详细</a></li>
+                        <li><a href="#">指令-详细</a></li>
+                        <li><a href="#">调试</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#">我遇到的坑</a>
+                </li>
+                <li class="">
+                    <a href="#">学习资料</a>
+                </li>
+                <li class="">
+                    <a href="#">关于作者</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 60px">
+        <div ng-view></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".navbg").capacityFixed();
+        $("#navul > li").not(".navhome").hover(function () {
+            $(this).addClass("navmoon");
+        }, function () {
+            $(this).removeClass("navmoon");
+        });
+    });
+
+    (function ($) {
+        $.fn.capacityFixed = function (options) {
+            var opts = $.extend({}, $.fn.capacityFixed.deflunt, options);
+            var FixedFun = function (element) {
+                var top = opts.top;
+                element.css({
+                    "top": top
+                });
+                $(window).scroll(function () {
+                    var scrolls = $(this).scrollTop();
+                    if (scrolls > top) {
+
+                        if (window.XMLHttpRequest) {
+                            element.css({
+                                position: "fixed",
+                                top: 0
+                            });
+                        } else {
+                            element.css({
+                                top: scrolls
+                            });
+                        }
+                    } else {
+                        element.css({
+                            position: "absolute",
+                            top: top
+                        });
+                    }
+                });
+                element.find(".close-ico").click(function (event) {
+                    element.remove();
+                    event.preventDefault();
+                })
+            };
+            return $(this).each(function () {
+                FixedFun($(this));
+            });
+        };
+        $.fn.capacityFixed.deflunt = {
+            right: 0,//相对于页面宽度的右边定位
+            top: 0
+        };
+    })(jQuery);
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<div class="row textContainer padding10 pSuojin">
+
+    <div class="col-xs-12 marginTop10" >
+        <div class="col-sm-6">
+            <div ng-app ng-init="qty=1;cost=2">
+                <b>示例1:</b>
+                <div>
+                    Quantity: <input type="number" ng-model="qty" required>
+                </div>
+                <div>
+                    Costs: <input type="number" ng-model="cost" required>
+                </div>
+                <div>
+                    <b>Total:</b> {{qty * cost | currency}}
+                </div>
+            </div>
+            <button class="btn btn-info btn-sm" ng-click="show1=!show1;">显示详细图解</button>
+        </div>
+        <div class="col-sm-6">
+            <img src="images/concepts-databinding1.png" ng-init="show1=false" ng-show="show1">
+        </div>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" ng-controller="bindCon1">
+        <div class="col-sm-6">
+            <div  >
+                <b>示例2:</b>
+                <div>
+                    Quantity: <input type="number" ng-model="qty" required>
+                </div>
+                <div>
+                    Costs: <input type="number" ng-model="cost" required>
+                    <select ng-model="inCurr">
+                        <option ng-repeat="c in currencies">{{c}}</option>
+                    </select>
+                </div>
+                <div>
+                    <b>Total:</b>
+                    <span ng-repeat="c in currencies">
+                      {{total(c) | currency:c}}
+                    </span>
+                    <button class="btn btn-primary" ng-click="pay()">Pay</button>
+                </div>
+            </div>
+            <button class="btn btn-info btn-sm" ng-click="show2=!show2;">显示详细图解</button>
+        </div>
+        <div class="col-sm-6">
+            <img src="images/concepts-databinding2.png" ng-init="show2=false" ng-show="show2">
+        </div>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" ng-controller="bindCon2">
+        <div class="col-sm-6">
+            <div  >
+                <b>Invoice:</b>
+                <div>
+                    Quantity: <input type="number" ng-model="qty" required >
+                </div>
+                <div>
+                    Costs: <input type="number" ng-model="cost" required >
+                    <select ng-model="inCurr">
+                        <option ng-repeat="c in currencies">{{c}}</option>
+                    </select>
+                </div>
+                <div>
+                    <b>Total:</b>
+                    <span ng-repeat="c in currencies">
+                      {{invoice.total(c) | currency:c}}
+                    </span>
+                    <button class="btn" ng-click="pay()">Pay</button>
+                </div>
+            </div>
+            <button class="btn btn-info btn-sm" ng-click="show3=!show3;">显示详细图解</button>
+        </div>
+        <div class="col-sm-6">
+            <img src="images/concepts-databinding2.png" ng-init="show3=false" ng-show="show3">
+        </div>
+    </div>
+    <div class="col-xs-12 marginTop10">
+
+    </div>
+
+</div>
