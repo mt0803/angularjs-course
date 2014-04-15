@@ -6,7 +6,6 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.controllers',
   'myApp.financeService'
-
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/angularIntro', {templateUrl: 'partials/angular_intro.html',controller: 'angularIntroCtrl'});
@@ -16,8 +15,13 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/studyFilter', {templateUrl: 'partials/studyFilter.html'});
   $routeProvider.when('/studyExecute', {templateUrl: 'partials/studyExecute.html'});
   $routeProvider.when('/studyScopeCommunication', {templateUrl: 'partials/studyScopeCommunication.html'});
-  $routeProvider.when('/view8', {templateUrl: 'partials/partial_controllerExt.html', controller: 'MainCtrl'});
-  $routeProvider.when('/view9', {templateUrl: 'partials/partial_select.html', controller: 'CheckboxCtrl'});
-  $routeProvider.when('/angularTree',{templateUrl:'partials/angularTree.html',controller:'treeCtrl'});
+  $routeProvider.when('/studyForm', {templateUrl: 'partials/studyForm.html'});
+  $routeProvider.when('/studyDI', {templateUrl: 'partials/studyDI.html', controller: 'CheckboxCtrl'});
+  $routeProvider.when('/studyDirective',{templateUrl:'partials/studyDirective.html'});
+  $routeProvider.when('/studyService',{templateUrl:'partials/studyService.html'});
+  $routeProvider.when('/studyXHRCall',{templateUrl:'partials/studyXHRCall.html'});
+  $routeProvider.when('/myExperience',{templateUrl:'partials/myExperience.html'});
+  $routeProvider.when('/knowledgeSource',{templateUrl:'partials/aboutKnowledgeSource.html'});
+  $routeProvider.when('/aboutAuthor',{templateUrl:'partials/aboutAuthor.html'});
   $routeProvider.otherwise({redirectTo: '/angularIntro'});
 }]);

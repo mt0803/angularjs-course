@@ -4,11 +4,11 @@
 
 
 angular.module('myApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
+  directive('myCustomer', function(version) {
+    return {
+        template: '姓名: {{customer.name}} 地址: {{customer.address}}'  //templateUrl
     };
-  }])
+  })
    .directive('accordion1', [function () {
     return {
       restrict: 'EA',

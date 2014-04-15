@@ -1,16 +1,16 @@
 <div class="row textContainer padding10">
     <div class="col-xs-12 marginTop10" >
         <div class="col-sm-6">
-            <div ng-app ng-init="qty=1;cost=2">
+            <div ng-app ng-init="qty1=1;cost=2">
                 <b>示例1:</b>
                 <div>
-                    Quantity: <input type="number" ng-model="qty" required>
+                    Quantity: <input type="number" ng-model="qty1" required>
                 </div>
                 <div>
                     Costs: <input type="number" ng-model="cost" required>
                 </div>
                 <div>
-                    <b>Total:</b> {{qty * cost | currency}}
+                    <b>Total:</b> {{qty1 * cost | currency}}
                 </div>
             </div>
             <button class="btn btn-info btn-sm" ng-click="show1=!show1;">显示详细图解</button>
@@ -97,8 +97,9 @@
     <div class="col-xs-12 marginTop10">
         <div class="col-sm-12">
             <h5><strong>DOM中Controller与scope的对应关系</strong></h5>
-            <img src="images/scopes.jpg">
-            <img src="images/concepts-scope.png">
+            <img class="marginTop10" src="images/scopes.jpg" ng-init="show5=false" ng-click="show5=!show5">
+            <p class="marginTop10" style="font-size: 20px;color: red">这段HTML模版对应的scope是怎样的一个层级关系呢？Think it？</p>
+            <img class="marginTop10" src="images/concepts-scope.png" ng-show="show5">
         </div>
     </div>
 </div>

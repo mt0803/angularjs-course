@@ -60,78 +60,63 @@ angular.module('myApp.controllers', [])
             $scope.text3="3. {{ expression | filter:argument1:argument2:... }}   比如： {{1288323623006 | date:'MM/dd/yyyy @ h:mma'}}: 10/29/2010 @ 11:40AM"
 		}
 	])
-	.controller('InvoiceCntl', ['$scope',
+	.controller('parentCtr', ['$scope',
 		function($scope) {
-			$scope.qty = 1;
-			$scope.cost = 19.95;
-			console.log($scope.qty);
+            $scope.$on("Child_1_NameChange",
+                function (event, msg) {
+                    $scope.parent=msg;
+                    $scope.$broadcast("Child_1_NameChangeFromParrent", "Parent Msg:"+msg);
+                });
 		}
 	])
-	.controller('ClockCntl', ['$scope',
+	.controller('childCtr1', ['$scope',
 		function($scope) {
-			$scope.format = 'M/d/yy h:mm:ss a';
-			$scope.modalShown = false;
-			console.log('123');
-			$scope.toggleModal = function() {
-				$scope.modalShown = !$scope.modalShown;
-			};
+            $scope.change = function (name) {
+                $scope.$emit("Child_1_NameChange", name);
+            };
 		}
 	])
-	.controller('ExpreCtrl', ['$scope',
-		function($scope, $window) {
-			Array.prototype.contains = function(obj) {
-				var i = $scope.length;
-				while (i--) {
-					if ($scope[i] === obj) {
-						return true;
-					}
-				}
-				return false;
-			};
-			var exprs = $scope.exprs = [];
-			$scope.expr = '3*10|currency';
-			$scope.addExp = function(expr) {
-				if (!exprs.contains(expr)) {
-					exprs.push(expr);
-				};
-			};
-			$scope.removeExp = function(index) {
-				exprs.splice(index, 1);
-			}
-			$scope.name = 'World';
-
-			$scope.greet = function() {
-				//alert('Hello ' + $scope.name);
-			}
+	.controller('childCtr2', ['$scope',
+		function($scope) {
+            $scope.$on("Child_1_NameChangeFromParrent",
+                function (event, msg) {
+                    $scope.ctr1_2_Name = msg;
+                });
 		}
 	])
-	.controller('FormCntl', ['$scope',
+	.controller('FormCtrl', ['$scope',
 		function($scope) {
-			$scope.master = {};
-			$scope.update = function(user) {
-				$scope.master = angular.copy(user);
-			};
-			$scope.reset = function() {
-				$scope.user = angular.copy($scope.master);
-			};
-			$scope.isUnchanged = function(user) {
-				return angular.equals(user, $scope.master);
-			};
-			$scope.reset();
+            $scope.master = {};
+            $scope.update = function(user) {
+                $scope.master = angular.copy(user);
+            };
+            $scope.reset = function() {
+                $scope.user = angular.copy($scope.master);
+            };
+            $scope.reset();
 		}
 	])
-	.controller('ScopeCntl', ['$scope',
+	.controller('formCtrl2', ['$scope',
 		function($scope) {
-			$scope.count = 0;
-			$scope.$on('MyEvent', function() {
-				$scope.count++;
-			});
+            $scope.master = {};
+            $scope.update = function(user) {
+                $scope.master = angular.copy(user);
+            };
+            $scope.reset = function() {
+                $scope.user = angular.copy($scope.master);
+            };
+            $scope.isUnchanged = function(user) {
+                return angular.equals(user, $scope.master);
+            };
+            $scope.reset();
 		}
 	])
-	.controller('MainCtrl', ['$scope',
+	.controller('directiveCtrl', ['$scope',
 		function($scope) {
-			$scope.timeOfDay = 'morning';
-			$scope.name = 'Nikki';
+            $scope.customer = {
+                name: 'Naomi',
+                address: '1600 Amphitheatre'
+            };
 		}
 	])
 	.controller('ChildCtrl', ['$scope',
@@ -203,48 +188,3 @@ angular.module('myApp.controllers', [])
 			}
 		}
 	]);
-// .controller('DialogDemoCtrl', ['$scope','$dialog',
-// 	function ($scope,$dialog) {
-
-
-//   $scope.opts = {
-//     backdrop: true,
-//     keyboard: true,
-//     backdropClick: true,
-//     templateUrl:  'partials/dialog.html', // OR: templateUrl: 'path/to/view.html',
-//     controller: 'TestDialogController'
-//   };
-
-//   $scope.openDialog = function(){
-//   	console.log(123);
-//     var d = $dialog.dialog($scope.opts);
-//     d.open().then(function(result){
-//     	console.log(result);
-//       if(result)
-//       {
-//       	console.log(result);
-//         alert('dialog closed with result: ' + result);
-//       }
-//     });
-//   };
-
-//   $scope.openMessageBox = function(){
-//     var title = 'This is a message box';
-//     var msg = 'This is the content of the message box';
-//     var btns = [{result:'cancel', label: 'Cancel'}, {result:'ok', label: 'OK', cssClass: 'btn-primary'}];
-
-//     $dialog.messageBox(title, msg, btns)
-//       .open()
-//       .then(function(result){
-//         alert('dialog closed with result: ' + result);
-//     });
-//   };
-// 	}
-// ]);
-
-// // the dialog is injected in the specified controller
-// function TestDialogController($scope, dialog){
-//   $scope.close = function(result){
-//     dialog.close(result);
-//   };
-// }

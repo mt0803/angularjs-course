@@ -1,0 +1,132 @@
+<div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.AngularJs中的Form</h3>
+        <p>In Angular forms can be nested. This means that the outer form is valid
+            when all of the child forms are valid as well. However, browsers do not
+            allow nesting of < form > elements, so Angular provides the ngForm directive
+            which behaves identically to < form > but can be nested. This allows you to have
+            nested forms, which is very useful when using Angular validation directives
+            in forms that are dynamically generated using the ngRepeat directive.
+            Since you cannot dynamically generate the name attribute of input elements
+            using interpolation, you have to wrap each set of repeated inputs in an
+            ngForm directive and nest these in an outer form element.</p>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">2.实际运用示例</h3>
+        <div ng-controller="FormCtrl">
+            <form class="css-form">
+                <label>Name: <input type="text" ng-model="user.name" required /></label><br>
+                <label>E-mail: <input type="email" ng-model="user.email" required /></label><br>
+                <label>Age : <input type="number" ng-model="user.age" max="100" min="18" required /></label><br>
+                <label>Gender: <input type="radio" ng-model="user.gender" value="male" />male
+                <input type="radio" ng-model="user.gender" value="female" />female</label><br>
+                <button ng-click="reset()">RESET</button>
+                <button ng-click="update(user)">SAVE</button>
+            </form>
+            <pre>form = {{user | json}}</pre>
+            <pre>master = {{master | json}}</pre>
+            <!--<style type="text/css">-->
+                <!--.css-form input.ng-invalid.ng-dirty {-->
+                    <!--background-color: #FA787E;-->
+                <!--}-->
+
+                <!--.css-form input.ng-valid.ng-dirty {-->
+                    <!--background-color: #78FA89;-->
+                <!--}-->
+            <!--</style>-->
+        </div>
+
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">3.前端表单验证</h3>
+        <p style="color: red;font-size: 18px">1. 支持的验证方式：
+            <button ng-click="show1=!show1;" ng-init="show1=false;">Show it</button>
+        </p>
+        <pre ng-show="show1">
+            < input
+                  'ng-model=""             // 绑定数据变量
+                  [name=""]                // 定义这个空间的 名称,需要做验证时，这个值必须定义
+                  [required=""]            // 该控件 是否必填
+                  [ng-required=""]         // 该控件 是否必填
+                  [ng-minlength=""]        // 最小长度
+                  [ng-maxlength=""]        // 最大长度
+                  [ng-pattern=""]          // 匹配模式
+                  [ng-change=""]>'         // 值变化时的回调函数
+                ...
+            < input >
+            额外的：
+            input type="number" 多了 number 错误类型，多了 max ， min 属性。
+            input type="url" 多了 url 错误类型。
+            input type="email" 多了 email 错误类型。
+        </pre>
+        <p style="color: red;font-size: 18px">2. 如何进行验证：
+            <button ng-click="show2=!show2;" ng-init="show2=false;">Show it</button>
+        </p>
+        <pre ng-show="show2">
+        1.  form 这个标签本身有一些动态类可以使用：
+                ng-valid 当表单验证通过时的设置
+                ng-invalid 当表单验证失败时的设置
+                ng-pristine 表单的未被动之前拥有
+                ng-dirty 表单被动过之后拥有
+        </pre>
+        <pre ng-show="show2">
+        2.  form 对象的属性：
+                $pristine 表单是否未被动过
+                $dirty 表单是否被动过
+                $valid 表单是否验证通过
+                $invalid 表单是否验证失败
+                $error 表单的验证错误
+
+            其中的 $error 对象包含有所有字段的验证信息, 比如一个input既有 required 又有 minlength
+            等验证，那么$error错误可能是其中之一。那么当它为空时， $error 中只有 required 的失败信息。
+            只输入一个字符之后， required 条件满足了，才可能有 minlength 这个失败信息。
+            即： 有多个验证项时，按顺序验证，当发现一个失败后，就显示这个失败信息。。。。
+        </pre>
+        <p style="color: red;font-size: 18px">2. 表单验证示例-2：
+            <button ng-click="show3=!show3;" ng-init="show3=false;">Show it</button>
+        </p>
+        <div class="col-xs-12" ng-controller="formCtrl2" ng-show="show3">
+            <form name="form" class="css-form" novalidate>
+                <label>Name:
+                <input type="text" ng-model="user.name" name="uName" required /></label><br />
+                <label>E-mail:
+                <input type="email" ng-model="user.email" name="uEmail" required/></label><br />
+                <div ng-show="form.uEmail.$dirty && form.uEmail.$invalid">Invalid:
+                    <span style="color: red" ng-show="form.uEmail.$error.required">Tell us your email.</span>
+                    <span style="color: red" ng-show="form.uEmail.$error.email">This is not a valid email.</span>
+                </div>
+
+                <label>Gender: <input type="radio" ng-model="user.gender" value="male" />male
+                <input type="radio" ng-model="user.gender" value="female" />female</label><br />
+
+                <input type="checkbox" ng-model="user.agree" name="userAgree" required />
+                <label>I agree: <input ng-show="user.agree" type="text" ng-model="user.agreeSign"
+                                required /></label><br />
+                <div style="color: red" ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>
+
+                <button ng-click="reset()" ng-disabled="isUnchanged(user)">RESET</button>
+                <button ng-click="update(user)"
+                        ng-disabled="form.$invalid || isUnchanged(user)">SAVE</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">4.自定义表单验证</h3>
+        <p>AngularJS实现了大部分常见的html5表单输入元素
+            (text, number, url, email, radio, checkbox)，
+            也实现了很多用于验证的指令(required, pattern, minlength, maxlength, min, max)。
+            想要定义你自己的验证器的话，可以通过在你自己的指令中添加一个验证函数给ngModel的控制器来实现</p>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span>
+            <a href="http://docs.angularjs.org/guide/forms"
+               target="_blank"><span style="color: red;font-size: 17px">
+                求 被点</span></a></p>
+    </div>
+</div>
+
