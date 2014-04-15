@@ -1,0 +1,105 @@
+<div class="row textContainer padding10">
+    <div class="col-xs-12 marginTop10" >
+        <div class="col-sm-6">
+            <div ng-app ng-init="qty1=1;cost=2">
+                <b>示例1:</b>
+                <div>
+                    Quantity: <input type="number" ng-model="qty1" required>
+                </div>
+                <div>
+                    Costs: <input type="number" ng-model="cost" required>
+                </div>
+                <div>
+                    <b>Total:</b> {{qty1 * cost | currency}}
+                </div>
+            </div>
+            <button class="btn btn-info btn-sm" ng-click="show1=!show1;">显示详细图解</button>
+        </div>
+        <div class="col-sm-6">
+            <img src="images/concepts-databinding1.png" ng-init="show1=false" ng-show="show1">
+        </div>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" ng-controller="bindCon1">
+        <div class="col-sm-6">
+            <div  >
+                <b>示例2:</b>
+                <div>
+                    Quantity: <input type="number" ng-model="qty" required>
+                </div>
+                <div>
+                    Costs: <input type="number" ng-model="cost" required>
+                    <select ng-model="inCurr">
+                        <option ng-repeat="c in currencies">{{c}}</option>
+                    </select>
+                </div>
+                <div>
+                    <b>Total:</b>
+                    <span ng-repeat="c in currencies">
+                      {{total(c) | currency:c}}
+                    </span>
+                    <button class="btn btn-primary" ng-click="pay()">Pay</button>
+                </div>
+            </div>
+            <button class="btn btn-info btn-sm" ng-click="show2=!show2;">显示详细图解</button>
+        </div>
+        <div class="col-sm-6">
+            <img src="images/concepts-databinding2.png" ng-init="show2=false" ng-show="show2">
+        </div>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" ng-controller="bindCon2">
+        <div class="col-sm-6">
+            <div  >
+                <b>Invoice:</b>
+                <div>
+                    Quantity: <input type="number" ng-model="qty" required >
+                </div>
+                <div>
+                    Costs: <input type="number" ng-model="cost" required >
+                    <select ng-model="inCurr">
+                        <option ng-repeat="c in currencies">{{c}}</option>
+                    </select>
+                </div>
+                <div>
+                    <b>Total:</b>
+                    <span ng-repeat="c in currencies">
+                      {{total(c) | currency:c}}
+                    </span>
+                    <button class="btn btn-primary" ng-click="pay()">Pay</button>
+                </div>
+            </div>
+            <button class="btn btn-info btn-sm" ng-click="show3=!show3;">显示详细图解</button>
+        </div>
+        <div class="col-sm-6">
+            <img src="images/concepts-module-service.png" ng-init="show3=false" ng-show="show3">
+        </div>
+    </div>
+</div>
+
+<div class="row textContainer padding10 marginTop10">
+    <div class="col-xs-12 marginTop10">
+        <div class="col-sm-12">
+            <h5><strong>概念解释：模版，作用域，视图，模型，控制器</strong></h5>
+            <button class="btn btn-info" ng-click="show4=!show4">来吧,让你明白的地方</button>
+            <div class="col-sm-12 marginTop10" ng-init="show4=false" ng-show="show4">
+                <img src="images/angular.jpg">
+            </div>
+            <div class="col-sm-12 marginTop10" ng-show="show4">
+                <p style="color: red;font-size: 18px"><strong>一句话：视图就是模版通过作用域后形成的！(类比蜡烛成像：模版就是
+                    蜡烛，作用域/控制器就是棱镜，视图就是所成之像)</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row textContainer padding10 marginTop10">
+    <div class="col-xs-12 marginTop10">
+        <div class="col-sm-12">
+            <h5><strong>DOM中Controller与scope的对应关系</strong></h5>
+            <img class="marginTop10" src="images/scopes.jpg" ng-init="show5=false" ng-click="show5=!show5">
+            <p class="marginTop10" style="font-size: 20px;color: red">这段HTML模版对应的scope是怎样的一个层级关系呢？Think it？</p>
+            <img class="marginTop10" src="images/concepts-scope.png" ng-show="show5">
+        </div>
+    </div>
+</div>

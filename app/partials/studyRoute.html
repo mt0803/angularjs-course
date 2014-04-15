@@ -1,0 +1,54 @@
+<div class="row textContainer padding10 pSuojin">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.何为Angular路由</h3>
+        <p>AngularJS路由功能是一个纯前端的解决方案，
+            与我们熟悉的后台路由不太一样。后台路由，
+            通过不同的URL会路由到不同的控制器上(controller)，
+            再渲染(render)到页面(HTML)。AngularJS的前端路由，
+            需求提前对指定的(ng-app)，定义路由规则(routeProvider)，
+            然后通过不同的URL，告诉(ng-app)加载哪个页面(HTML)，
+            再渲染到(ng-app)视图(ng-view)中。
+        </p><p>
+            AngularJS的前端路由，虽然URL输入不一样，
+            页面展示不一样，其实完成的单页(ng-app)视图(ng-view)的局部刷新。
+            这样来看，AngularJS做单页应用就有点标配的感觉了。</p>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">2.如何定义</h3>
+        <pre>
+        angular.module('myApp', [
+              'ngRoute',
+              'myApp.controllers',
+              'myApp.financeService'
+
+            ]).
+            config(['$routeProvider', function($routeProvider) {
+              $routeProvider.when('/angularIntro', {templateUrl: 'partials/angular_intro.html',controller: 'angularIntroCtrl'});
+              $routeProvider.when('/studyDataBind', {templateUrl: 'partials/studyDataBind.html'});
+              $routeProvider.when('/studyEventBind', {templateUrl: 'partials/studyEventBind.html'});
+              $routeProvider.when('/studyRoute', {templateUrl: 'partials/studyRoute.html'});
+              $routeProvider.when('/studyFilter', {templateUrl: 'partials/studyFilter.html'});
+              $routeProvider.when('/studyExecute', {templateUrl: 'partials/studyExecute.html'});
+        </pre>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">3.如何使用</h3>
+        <p>1. herf="/xxx" 连接到某个页面</p>
+        <p>2. location(/xxx) 跳转到某个页面(传递参数 与 不传递参数)</p>
+        <button class="btn btn-info" ng-click="show4=!show4">用力点这里，让你明白</button>
+        <div class="marginTop10" ng-inlit="show4=false" ng-show="show4">
+            <img src="images/route.jpg">
+        </div>
+
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span>
+            <a href="http://angularjs.cn/A00a"
+               target="_blank"><span style="color: red;font-size: 17px">
+                求 被点</span></a></p>
+    </div>
+</div>
+

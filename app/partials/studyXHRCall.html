@@ -1,0 +1,83 @@
+<div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.如何在AngularJs中发起call请求</h3>
+        <p>两种方式：$http 与 $resource</p>
+        <pre>
+        $http({method: 'GET', url: '/someUrl'}).
+                success(function(data, status, headers, config) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                }).
+                error(function(data, status, headers, config) {
+                  // called asynchronously if an error occurs
+                  // or server returns response with an error status.
+                });
+        </pre>
+        <pre>
+             angular.module('table_list.service', ['ngResource'])
+                .factory('TableDataService', ['$resource', '$routeParams',
+                    function ($resource, $routeParams) {
+                            return $resource('http://localhost/galaxy.cc',   <span style="color: red">//url</span>
+                            {
+                                sourceDBType: '@sourceDBType',               <span style="color: red">//paramDefaults</span>
+                                sourceDBName: '@sourceDBName',
+                                sourceTableName: '@sourceTableName',
+                                taskID: '@taskID',
+                                taskStatus:'@taskStatus'
+                            },
+                            {                                                <span style="color: red">//actions</span>
+                                queryDBs: {
+                                    method: 'POST',
+                                    params: { action: 'QueryTaskLoadDBs' }
+                                },
+                                queryTasks: {
+                                    method: 'POST',
+                                    params: { action: 'QueryTaskLoadAllTasks' }
+                                },
+                                deleteTargetDBType: {
+                                    method: 'DELETE',
+                                    params: { action: 'QueryTaskDeleteTargetDBType' }
+                                },
+                                migrateData: {
+                                    method: 'POST',
+                                    params: {
+                                              action: 'MigrateData'
+                                    }
+                                }
+                            }
+                        );
+                    }
+                ]);
+
+
+            function TableListCtrl($scope, $filter, $location, $modal, component, TableDataService) {
+
+                <span style="color: red">//  http://localhost/galaxy.cc? action=QueryTaskLoadDBs&sourceDBType=xxxxx</span>
+                var result = TableDataService.queryDBs({
+                     'sourceDBType': $scope.sourceDBType
+                });
+
+                result.$promise.then(
+                    function (data) {
+                        ...获取数据
+                    },
+                    function (reason) {
+                        ...获取数据失败，返回原因
+                    }
+                );
+            ｝
+        </pre>
+    </div>
+
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span></p>
+            <a href="http://docs.angularjs.org/api/ng/service/$http"
+               target="_blank"><span style="color: red;font-size: 17px">
+                $http相关  </span></a><br>
+        <a href="http://docs.angularjs.org/api/ngResource/service/$resource"
+           target="_blank"><span style="color: red;font-size: 17px">
+               $resource相关  </span></a>
+    </div>
+</div>
+

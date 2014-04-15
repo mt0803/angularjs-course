@@ -1,0 +1,55 @@
+<div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.问题来源</h3>
+        <button class="btn btn-primary" ng-init="show1=false" ng-click="show1=!show1">来吧，点我</button>
+        <img src="images/scope.jpg" ng-show="show1">
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">2.AngularJs中的controller之间的通信方式</h3>
+        <p style="color: red;font-size: 16px">类比一个问题:
+           中央政府，省政府，县政府 之间是如何 传递信息的呢？</p>
+        <blockquote>
+        毫无疑问：<br> 中央政府想要各个省做出什么动作，那必须向下面的各个省政府广播 神马精神文件。。。<br>
+        省政府想获取中央政府的钱呢，就必须向中央发起 各种请求。。
+        </blockquote>
+
+        <button class="btn btn-primary" ng-init="show2=false" ng-click="show2=!show2">神马类比，不懂!
+            <img src="images/zhuankuang.gif">我要知道办法</button>
+        <div class="col-xs-12 marginTop10" ng-show="show2">
+            <p>AngularJS的解决办法为：</p>
+            <blockquote style="color: green;font-size: 18px">Angularjs为在scope中为我们提供了冒泡和隧道机制，$broadcast会
+                把事件广播给所有子controller，而$emit则会将事件冒泡传递给父controller，
+                $on则是angularjs的事件注册函数，有了这一些我们就能很快的以angularjs的
+                方式去解决angularjs controller之间的通信</blockquote>
+        </div>
+
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">3.具体实例</h3>
+            <div  ng-controller="parentCtr">
+                <label>父controller接受的信息：
+                    <input ng-model="parent" type="text">
+                </label>
+                 <div ng-controller="childCtr1">
+                     <label>发布信息 :
+                        <input ng-model="ctr1_1_Name" type="text" ng-change="change(ctr1_1_Name);" />
+                     </label>
+                 </div>
+                 <div ng-controller="childCtr2">
+                     <label>兄弟controller从父controller接受到信息:
+                        <input ng-model="ctr1_2_Name" type="text"/>
+                     </label>
+                 </div>
+            </div>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span>
+            <a href="http://www.cnblogs.com/whitewolf/archive/2013/04/16/3024843.html"
+               target="_blank"><span style="color: red;font-size: 17px">
+                求 被点</span></a></p>
+    </div>
+</div>
+
