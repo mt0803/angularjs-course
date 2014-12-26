@@ -49,3 +49,6 @@ ul, ul li{list-style-type:none;}
 #navul li.navmoon ul a{display:block;width:98px;height:28px;line-height:28px;}
 #navul li.navmoon ul a:hover{background:#000000;}
 
+.my-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; }

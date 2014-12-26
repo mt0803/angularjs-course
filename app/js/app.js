@@ -8,7 +8,7 @@ angular.module('myApp', [
   'myApp.financeService'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/angularIntro', {templateUrl: 'partials/angular_intro.html',controller: 'angularIntroCtrl'});
+  $routeProvider.when('/angularIntro', {templateUrl: 'partials/angular_intro.html'});
   $routeProvider.when('/studyDataBind', {templateUrl: 'partials/studyDataBind.html'});
   $routeProvider.when('/studyEventBind', {templateUrl: 'partials/studyEventBind.html'});
   $routeProvider.when('/studyRoute', {templateUrl: 'partials/studyRoute.html'});
@@ -23,5 +23,6 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/myExperience',{templateUrl:'partials/myExperience.html'});
   $routeProvider.when('/knowledgeSource',{templateUrl:'partials/aboutKnowledgeSource.html'});
   $routeProvider.when('/aboutAuthor',{templateUrl:'partials/aboutAuthor.html'});
+  $routeProvider.when('/angular_module_file_upload', {templateUrl: 'partials/angular_module_file_upload.html'})
   $routeProvider.otherwise({redirectTo: '/angularIntro'});
 }]);
