@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
     <div class="col-xs-12 marginTop10" >
         <h3 style="color: blue">坑--1</h3>
@@ -55,3 +56,62 @@
 
 </div>
 
+=======
+<div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">坑--1</h3>
+        <pre>
+        ng-repeat  (k,v) in kvs    ng-model="v"   这里v的改变不能改变原始值,  ps: 如果是数组的数据绑定就没有问题
+            解决办法：  ng-model = "$parent.kvs[k]"
+        </pre>
+    </div>
+
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">坑--2</h3>
+        <pre>
+        关于Filter，对于数组  [ {k,v}, {k,v}, {k,v}] | filter : somestring可以进行filter,
+            然而对于Object  ｛k:v,  k:v,  k:v｝| filter: somestring 达不到进行filter的目的，
+            解决办法，自己实现一个filter ： With<br>
+        代码如下：
+            angular.module('table_list.filter', [])
+            .filter("With", function () {
+                return function(items,field){
+                    var result = {};
+                    angular.forEach(items,function(v,k){
+                        if(k.match(field)){
+                            result[k] = v;
+                        }
+                    });
+                    return result;
+                }
+            })
+        </pre>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">坑--3</h3>
+        <pre>
+        ngIf in select doesn't update model
+            大致原因是：ng-if会新起一个scope，所以要绑定数据的话，<span style="color: red">必须使用$parent.data;或者changing it to (ng-if to ng-show)</span>
+
+            < select ng-if="!treeChanged" ng-change="reloadTree(selectedTypeId)"
+            ng-model="selectedTypeId" ng-options="type.id as type.name for type in types">
+            < /select>
+            did not update the ng-model
+
+        </pre>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">坑--4</h3>
+        <pre>
+        数组类型为[{ID:"11",Text:"334"},{},{}] 的排序，  item in items | orderBy:item.ID   按照ID列来排序
+            数组类型为 ['2','4','6','7'] 的排序，  item in items | orderBy:'toString()'   按照字典序排序，
+            如何按数字排序，自己写filter函数实现
+        </pre>
+    </div>
+
+</div>
+
+>>>>>>> c868cf4a07b1d0f3b5550af2a3db8c4bb3bcb941

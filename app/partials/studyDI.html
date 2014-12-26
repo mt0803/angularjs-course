@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
     <div class="col-xs-12 marginTop10" >
         <h3 style="color: blue">1.依赖注入</h3>
@@ -36,3 +37,43 @@
     </div>
 </div>
 
+=======
+<div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.依赖注入</h3>
+        <p><strong>依赖注入是一种软件设计模式，用来处理代码的依赖关系。</strong></p>
+        <p>一般来说有三种方法让函数获得它的需要的依赖：</p>
+        <ol>
+            <li>它的依赖是能被创建的，一般用new操作符就行。</li>
+            <li>能够通过全局变量查找依赖。</li>
+            <li>依赖能在需要时被导入。</li>
+        </ol>
+        <p>前两种方式都不是很好，因为它们需要对依赖硬编码，使得修改依赖的时候变得困难。
+            特别是在测试的时候不好办，因为对某个部分进行孤立的测试常常需要模拟它的依赖。
+            第三种方式是最好的，因为它不必在组件中去主动需找和获取依赖，而是由外界将依赖传入。</p>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">2.AngularJs中的DI</h3>
+        <button class="btn btn-primary" ng-click="show1=!show1" ng-init="show1=false">来吧，看一个简单示例</button>
+        <div class="col-xs-12 marginTop10" ng-show="show1">
+            <img src="images/di1.jpg">
+            <p style="font-size: 20px;color: red" class="marginTop10">好简单？其实工程运用中，更简单
+                <button class="btn btn-primary" ng-click="show2=!show2" ng-init="show2=false">看看 工程中怎么用？</button>
+            </p>
+        </div>
+        <div class="col-xs-12 marginTop10" ng-show="show2">
+            <img src="images/di.jpg">
+        </div>
+
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span>
+            <a href="http://docs.angularjs.org/guide/di"
+               target="_blank"><span style="color: red;font-size: 17px">
+                求 被点</span></a></p>
+    </div>
+</div>
+
+>>>>>>> c868cf4a07b1d0f3b5550af2a3db8c4bb3bcb941

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
     <div class="col-xs-12 marginTop10" >
         <h3 style="color: blue">1.什么是服务</h3>
@@ -47,3 +48,54 @@
     </div>
 </div>
 
+=======
+<div class="row textContainer padding10 pSuojin" ng-controller="filterCtrl">
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">1.什么是服务</h3>
+        <p>服务是单例对象或者函数，用来实现web应用里常见的特定任务。
+            Angular有很多内置的服务，比如$http service服务，它提供了
+            对浏览器XMLHttpRequest对象的访问，用以实现向服务器发出请求。
+            就像其他Angular核心的变量和标识符一样，内置的服务名都以$开头
+            (比如上面提到的$http)。当然，你也能创建自定义的服务。</p>
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">2.如何实现及使用服务</h3>
+        <p>在AngularJs中一个服务即一个注入对象，注入对象的实现有五种方式：</p>
+        <ol>
+            <li>value</li>
+            <li>constant</li>
+            <li>service</li>
+            <li>factory</li>
+            <li>provider</li>
+        </ol>
+        <div class="col-xs-12 marginTop10">
+            <button class="btn btn-primary" ng-click="show1=!show1" ng-init="show1=false">一个完成的服务创建，注册，使用的过程</button>
+        </div>
+        <div class="col-xs-12 marginTop10" ng-show="show1">
+            <img src="images/service.jpg">
+        </div>
+        <div class="col-xs-12 marginTop10">
+            <button class="btn btn-primary" ng-click="show2=!show2" ng-init="show2=false">不通实现方式的区别</button>
+        </div>
+        <div class="col-xs-12 marginTop10" ng-show="show2">
+            <img src="images/service2.jpg">
+        </div>
+
+    </div>
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <h3 style="color: blue">3.简单示例</h3>
+        <a href="http://docs.angularjs.org/guide/services" target="_blank">请点击跳转</a>
+    </div>
+
+    <div class="col-xs-12 hr hr-double hr-dotted hr18"></div>
+    <div class="col-xs-12 marginTop10" >
+        <p style="font-size: 20px"><span>想知道更多，移步这里：</span>
+            <a href="http://stackoverflow.com/questions/15666048/angular-js-service-vs-provider-vs-factory"
+               target="_blank"><span style="color: red;font-size: 17px">
+                求 被点</span></a></p>
+    </div>
+</div>
+
+>>>>>>> c868cf4a07b1d0f3b5550af2a3db8c4bb3bcb941
